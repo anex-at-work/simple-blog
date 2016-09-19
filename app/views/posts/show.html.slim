@@ -10,7 +10,7 @@ article
     .row.mt-10
       .col-md-12
         - @post.tags.each do |tag|
-          a.label.label-primary> href=root_path =tag.name
+          a.label.label-primary> href=tag_posts_path(tag_id: tag.name) =tag.name
 #comments
   .row
     .col-md-12

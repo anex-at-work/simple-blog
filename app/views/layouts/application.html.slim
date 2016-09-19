@@ -40,6 +40,7 @@ html
         aside.col-md-2
           h3 Тэги
           - @tags.each do |tag|
-            a> href=tag_posts_path(tag_id: tag.name) #{tag}
+            a<> href=tag_posts_path(tag_id: tag.name) #{tag}
+            | |
     footer
       a.pull-left href=easytest_path easytest

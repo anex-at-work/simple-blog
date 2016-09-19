@@ -5,7 +5,9 @@
     | Записи
     - if params[:user_id].present?
       |  пользователя #{@user_post.username}
-
+    - elsif params[:tag_id].present?
+      | по тэгу&nbsp;
+      em =params[:tag_id]
 = render @posts
 .row
   .col-md-12
