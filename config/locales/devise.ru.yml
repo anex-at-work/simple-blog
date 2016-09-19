@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        username: Псевдоним
+        login: Email или псевдоним
+  helpers:
+    buttons:
+      sign_up: Зарегистрироваться
+      sign_in: Войти
+      sign_out: Выйти
+      forgot: Забыли пароль?
+      send_instructions: Выслать инструкцию по восстановлению пароля

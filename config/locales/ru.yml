@@ -1,0 +1,45 @@
+ru:
+  activerecord:
+    models:
+      post:
+        one: запись
+        other: записи
+      comment:
+        one: комментарий
+        other: комментарии
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              contains_atc: содержит запрещенный символ "@"
+  time:
+    formats:
+      full: '%d.%m.%Y %H:%M'
+      full_in: '%d.%m.%Y в %H:%M'
+      full_time: '%d.%m.%Y %H:%M'
+      default: '%d.%m.%Y'
+      for_picker: '%Y-%m-%d'
+      with_month: '%d %B %Y'
+      system_full: '%Y-%m-%d %H:%M:%S'
+  comments:
+    zero: Нет комментариев
+    one: комментарий
+    few: комментария
+    many: комментариев
+    other: комментариев
+  views:
+    pagination:
+      first: «
+      last: »
+      previous: ‹
+      next: ›
+      truncate: "&hellip;"
+  confirm:
+    post:
+      delete: Вы действительно хотите удалить запись?
+    comment:
+      delete: Вы действительно хотите удалить комментарий?
+  messages:
+    unauthorized: Вы не авторизованы!
+    comment_not_editable: Комментарий невозможно отредактировать!

@@ -1,0 +1,21 @@
+@import bootstrap-sass/bootstrap-sprockets
+@import bootstrap-sass/bootstrap
+@import eonasdan-bootstrap-datetimepicker
+@import select2
+@import select2-bootstrap
+
+@for $i from 1 through 15
+  .mt-#{$i * 5}
+    margin-top: 5px * $i
+  .pt-#{$i * 5}
+    padding-top: 5px * $i
+  .mb-#{$i * 5}
+    margin-bottom: 5px * $i
+  .pb-#{$i * 5}
+    padding-bottom: 5px * $i
+  .ml-#{$i * 5}
+    margin-left: 5px * $i
+
+.comment
+  &:hover
+    background: #f7f7de

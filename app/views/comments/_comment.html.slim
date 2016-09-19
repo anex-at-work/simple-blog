@@ -1,0 +1,25 @@
+.comment.mb-10 class=%(ml-#{7 > comment.depth ? comment.depth * 15 : 105})
+  - if !comment.deleted?
+    .row.mb-10
+      .col-md-12
+        a> href=post_path(comment.post_id, anchor: %(comment-#{comment.id})) id=%(comment-#{comment.id}) #
+        a> href=user_posts_path(comment.user_id) = comment.user.username
+        time = l(comment.created_at, format: :full)
+        - if 1 < comment.audits.count
+          .label.label-warning<
+            | Комментарий был изменен #{l(comment.updated_at, format: :full)}
+        - if comment.can_edit_by? current_user
+          a.edit-comment.btn.btn-xs.btn-danger< href=edit_post_comment_path(comment.id, post_id: comment.post_id)
+            | Редактировать
+            .badge.countdown< data-available=(comment.created_at - Comment.avaliable_time).to_i
+    .row.comment-body
+      .col-md-12
+        = simple_format comment.comment
+    - if user_signed_in?
+      .row.comment-tools.mb-10
+        .col-md-12
+          .reply.btn.btn-xs.btn-default data-reply-for=comment.id Ответить
+  - else
+    .row.mb-10
+      .label.label-danger
+        | Комментарий был удален #{l(comment.updated_at, format: :full)}

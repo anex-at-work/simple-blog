@@ -1,0 +1,12 @@
+- content_for :header do
+  - if params[:user_id].present? && current_user.try(:id) == params[:user_id].to_i
+    | Мои записи
+  - else
+    | Записи
+    - if params[:user_id].present?
+      |  пользователя #{@user_post.username}
+
+= render @posts
+.row
+  .col-md-12
+    = paginate @posts

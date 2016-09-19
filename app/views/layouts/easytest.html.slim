@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title EasyTest
+    = stylesheet_link_tag 'easytest', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'easytest', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    main
+      .slider
+        .slider__arrows
+          .slider__arrow-left
+          .slider__arrow-right
+        .slider__content
+          - 3.times do |i|
+            .slider__item style="background-image: url('#{image_url('examples/example-' + (i+1).to_s + '.jpg')}');"
+              .slider__item-header
+                .slider__item-text Фотографиям вашего рёбенка позавидуют даже звезды
+                a.slider__item-button href='#' Начать обучение &raquo;
+          - 3.times do |i|
+            .slider__item style="background-image: url('#{image_url('examples/example-' + (i+1).to_s + '.jpg')}');"
+              .slider__item-header
+                .slider__item-text Фотографиям вашего рёбенка позавидуют даже звезды
+                a.slider__item-button href='#' Начать обучение &raquo;

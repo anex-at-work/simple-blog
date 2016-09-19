@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title
+      - if content_for :header
+        = strip_tags(yield :header)
+      - else
+        | SimpleBlog
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    header
+      nav.navbar.navbar-inverse.navbar-fixed-top
+        .container
+          .navbar-header
+            a.navbar-brand href=root_path SimpleBlog
+          ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              li
+                a href=user_posts_path(current_user.id) Мои записи
+              li
+                a href=new_post_path Создать запись
+              li.divider role='separator'
+              li
+                = link_to 'Выход', destroy_user_session_path, method: :delete
+            - else
+              li
+                a href=new_user_session_path Вход
+              li.divider role='separator'
+              li
+                a href=new_user_registration_path Регистрация
+    .container.mt-75
+      .row
+        main.col-md-10
+          - if content_for :header
+            h2 == yield :header
+          == yield
+        aside.col-md-2
+          h3 Тэги
+          - @tags.each do |tag|
+            a> href=tag_posts_path(tag_id: tag.name) #{tag}
+    footer
+      a.pull-left href=easytest_path easytest

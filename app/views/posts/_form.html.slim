@@ -1,0 +1,29 @@
+= simple_form_for @post do |f|
+  = f.error_notification
+  .row
+    .col-md-6
+      = f.input :name
+    .col-md-6
+      .form-group
+        .checkbox
+          label.mt-20
+            = f.check_box :status, {checked: @post.published?, autocomplete: :off}, :published, :unpublished
+            | Опубликовано
+  .row
+    .col-md-3
+      .form-group
+        = f.label :published_at
+        = f.text_field :published_at, class: 'form-control', autocomplete: :off,
+          value: l(@post.published_at, format: :full), data: {datetimepicker: true}
+    .col-md-9
+      = f.input :tag_list, collection: @post.tags, label_method: :name, value_method: :name, selected: @post.tags,
+        input_html: {class: 'form-control tageditable', multiple: true, data: {tagsurl: tags_posts_path}}
+  .row
+    .col-md-12
+      = f.input :content, input_html: {rows: 10}
+  .row
+    .col-md-12
+      = f.button :submit
+      - unless @post.new_record?
+        = link_to 'Удалить', @post, class: 'btn btn-danger pull-right', method: :delete,
+          data: {confirm: t('confirm.post.delete')}

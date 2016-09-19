@@ -1,0 +1,19 @@
+- content_for :header do
+  | Вход
+
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  - if flash.any?
+    .alert.alert-danger
+      == flash.collect {|n, msg| msg }.join('<br />')
+  .row
+    .col-md-5
+      = f.input :login, required: false, autofocus: true
+    .col-md-5
+      = f.input :password, required: false
+    .col-md-2.pt-20
+      = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+  .row
+    .col-md-12
+      = f.button :submit, t('helpers.buttons.sign_in')
+
+= render "users/shared/links"

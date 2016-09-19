@@ -1,0 +1,11 @@
+.row
+  .col-md-2
+    time.label class=(Time.zone.now < post.published_at ? 'label-warning' : 'label-default') = l(post.published_at, format: :full)
+  .col-md-3
+    a href=user_posts_path(post.user_id) =post.user.username
+  - if post.can_edit_by? current_user
+    .col-md-7.text-right
+      - if post.unpublished?
+        i.glyphicon.glyphicon-eye-close> title='Не опубликовано'
+      a.btn.btn-primary.btn-xs.text-color-white href=edit_post_path(post.id)
+        | Редактировать

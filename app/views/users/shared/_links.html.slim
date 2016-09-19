@@ -1,0 +1,4 @@
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  .row.mt-20
+    .col-md-6
+      a href=new_password_path(resource_name) =t('helpers.buttons.forgot')

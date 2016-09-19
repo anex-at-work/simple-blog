@@ -1,0 +1,36 @@
+article
+  .row
+    .col-md-12
+      h3 =@post.name
+  = render partial: '_shared/post_tools', locals: {post: @post}
+  .row.mt-10
+    .col-md-12
+      = simple_format @post.content
+  - if @post.tags.any?
+    .row.mt-10
+      .col-md-12
+        - @post.tags.each do |tag|
+          a.label.label-primary> href=root_path =tag.name
+#comments
+  .row
+    .col-md-12
+      h3 Комментарии
+  .row
+    .col-md-12
+      - if user_signed_in?
+        - if @post.published? && Time.zone.now > @post.published_at
+          = simple_form_for [@post, @new_comment], remote: true do |f|
+            = f.hidden_field :parent_id
+            = f.input :comment, input_html: {rows: 4}
+            = f.button :submit
+        - else
+          | Пост не опубликован
+      - else
+        | Для того, чтобы оставлять комментарии, вы должны
+        a<> href=new_user_session_path войти
+        | или
+        a< href=new_user_registration_path зарегистрироваться.
+  - if @comments.any? && @post.published? && Time.zone.now > @post.published_at
+    .row.mt-10
+      .col-md-12
+        = render @comments

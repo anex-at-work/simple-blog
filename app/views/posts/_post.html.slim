@@ -1,0 +1,19 @@
+article
+  .row
+    .col-md-12
+      h3
+        a href=post_path(post.id) =post.name
+  = render partial: '_shared/post_tools', locals: {post: post}
+  .row.mt-10
+    .col-md-3
+      a href=post_path(post.id, anchor: 'comments')
+        span.badge =post.comments.count
+        | &nbsp;
+        = t(:comments, count: post.comments.count)
+    .col-md-9
+      - post.tags.each do |tag|
+        a.label.label-primary> href=root_path =tag.name
+  .row.mt-10
+    .col-md-12
+      p = truncate post.content, length: 250, separator: ' '
+  hr

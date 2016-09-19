@@ -1,0 +1,10 @@
+- content_for :header do
+  | Редактирование комментария
+
+= simple_form_for [@comment.post, @comment], remote: true do |f|
+  = f.hidden_field :parent_id
+  = f.input :comment, input_html: {rows: 4}
+  = f.button :submit
+  = link_to 'Удалить', post_comment_path(@comment, post_id: @comment.post_id),
+    class: 'btn btn-danger pull-right', method: :delete,
+    data: {confirm: t('confirm.comment.delete')}
